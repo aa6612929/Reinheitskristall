@@ -1,14 +1,29 @@
-/* =============== style.css (مُعدّل لجعل الـ nav في الوسط) =============== */
+/* =============== style.css (متوافق مع جميع الأجهزة والمتصفحات) =============== */
 
+/* توحيد الأساس */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html, body {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* إعدادات عامة */
 body {
   margin: 0;
-  font-family: 'Segoe UI', Arial, sans-serif;
+  font-family: 'Segoe UI', Roboto, Arial, Helvetica, sans-serif;
   color: #868383bd;
   overflow-x: hidden;
   background: #000000;
   background-size: cover;
   background-position: center;
   transition: background-image 1.5s ease-in-out;
+  -webkit-transition: background-image 1.5s ease-in-out;
+  -moz-transition: background-image 1.5s ease-in-out;
 }
 body::-webkit-scrollbar { width: 0; }
 
@@ -17,38 +32,38 @@ header {
   position: fixed;
   top: 0; left: 0;
   width: 100%;
-  height: 10vh;
+  min-height: 60px;
+  padding-block: 0.5rem;
   display: flex;
   align-items: center;
-  justify-content: center; /* اجعل المحتوى في المركز أفقياً */
-  padding: 0 5%;
+  justify-content: center;
+  padding-inline: 5%;
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   border-bottom: 1px solid rgba(255,255,255,0.2);
   z-index: 1000;
   box-sizing: border-box;
 }
 
-/* غلاف داخلي لتقسيم الشعار والـ nav مع الحفاظ على المحاذاة الوسط */
 .header-inner {
   width: 100%;
-  max-width: 1200px; /* يمنع التمدد الكبير على شاشات واسعة */
+  max-width: 1200px;
   display: flex;
   align-items: center;
-  justify-content: space-between; /* الشعار و nav متباعدان داخل الحاوية المركزية */
+  justify-content: space-between;
   gap: 1rem;
 }
 
-/* الشعار - نحفظ له مساحة صغيرة قابلة للتقلّص */
+/* =============== الشعار =============== */
 .logo {
   display: flex;
   align-items: center;
   gap: 1rem;
-  flex: 0 1 auto; /* لا يلتهم كل المساحة */
+  flex: 0 1 auto;
 }
 .logo img {
-  width: 8vw;
-  max-width: 56px;
+  width: clamp(40px, 6vw, 60px);
   height: auto;
 }
 .glass-name {
@@ -62,24 +77,26 @@ header {
 /* =============== القائمة العلوية =============== */
 nav {
   display: flex;
-  gap: 1rem;               /* قلّلت الفجوة لتقرب الروابط من الوسط */
+  gap: 1rem;
   align-items: center;
-  justify-content: center; /* تضمن أن العناصر تتوسط داخل الـ nav عند المساحة المتاحة */
+  justify-content: center;
   background: rgba(255, 255, 255, 0.06);
   padding: 0.35rem 0.6rem;
   border-radius: 10px;
-  max-width: 70vw;         /* تمنع خروج الـ nav خارج الهيدر */
+  max-width: 70vw;
   box-sizing: border-box;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;     /* تمنع التفاف النص داخل الروابط؛ نتعامل مع التفاف للعرض الكلي أدناه */
+  white-space: nowrap;
 }
 nav a {
   color: #fff;
   text-decoration: none;
   font-size: 0.95rem;
   padding: 0.2rem 0.6rem;
-  transition: 0.25s;
+  transition: all 0.25s ease;
+  -webkit-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
 }
 nav a:hover { color: #00bfff; }
 
@@ -96,45 +113,102 @@ main {
 section { display: none; animation: fadeIn 0.8s ease; }
 section.active { display: block; }
 
-/* =============== القائمة الجانبية =============== */
-.side-menu { position: fixed; top: 50%; right: 2%; transform: translateY(-50%); z-index: 1000; }
-.side-menu-line { width: 0.8vw; min-width: 6px; height: 20vh; background-color: #fff; border-radius: 4px; cursor: grab; transition: opacity 0.2s; }
-.side-menu-content {
-  position: fixed; top: 50%; right: 2%; transform: translateY(-50%) translateX(100%);
-  display: flex; flex-direction: column; gap: 1rem;
-  background: rgba(255,255,255,0.05); backdrop-filter: blur(6px);
-  padding: 1rem; border-radius: 10px 0 0 10px; transition: transform 0.3s ease; z-index: 999;
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-.side-menu-content a { color: #fff; text-decoration: none; padding: 0.6rem 1rem; border-radius: 5px; background: rgba(255,255,255,0.05); transition: 0.3s; }
-.side-menu-content a:hover { background: rgba(255,255,255,0.15); }
+@-webkit-keyframes fadeIn {
+  from { opacity: 0; -webkit-transform: translateY(20px); }
+  to { opacity: 1; -webkit-transform: translateY(0); }
+}
 
-/* =============== الأنيميشن =============== */
-@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+/* =============== القائمة الجانبية =============== */
+.side-menu {
+  position: fixed;
+  top: 50%;
+  right: 2%;
+  transform: translateY(-50%);
+  z-index: 1000;
+}
+.side-menu-line {
+  width: 0.8vw;
+  min-width: 6px;
+  height: 20vh;
+  background-color: #fff;
+  border-radius: 4px;
+  cursor: grab;
+  transition: opacity 0.2s;
+}
+.side-menu-content {
+  position: fixed;
+  top: 50%;
+  right: 2%;
+  transform: translateY(-50%) translateX(100%);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  padding: 1rem;
+  border-radius: 10px 0 0 10px;
+  transition: transform 0.3s ease;
+  z-index: 999;
+}
+.side-menu-content a {
+  color: #fff;
+  text-decoration: none;
+  padding: 0.6rem 1rem;
+  border-radius: 5px;
+  background: rgba(255,255,255,0.05);
+  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+}
+.side-menu-content a:hover {
+  background: rgba(255,255,255,0.15);
+}
 
 /* =============== تجاوب الشاشات =============== */
-/* جوال */
 @media (max-width: 768px) {
-  header { height: auto; padding: 0.6rem 4%; }
-  .header-inner { flex-direction: column; gap: 0.6rem; align-items: center; }
-  .logo img { width: 18vw; max-width: 56px; }
+  header {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 0.6rem 4%;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .header-inner {
+    flex-direction: column;
+    gap: 0.6rem;
+    align-items: center;
+  }
+  .logo img {
+    width: 18vw;
+    max-width: 56px;
+  }
   nav {
     max-width: 100%;
-    white-space: normal;     /* السماح بالالتفاف على الجوال */
+    white-space: normal;
     flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
     gap: 0.6rem;
     padding: 0.4rem;
   }
-  nav a { font-size: 0.95rem; padding: 0.45rem 0.8rem; }
+  nav a {
+    flex: 1 1 40%;
+    text-align: center;
+    font-size: 0.95rem;
+    padding: 0.45rem 0.8rem;
+  }
   main { padding-top: 18vh; }
 }
 
-/* تابلت */
 @media (min-width: 769px) and (max-width: 1024px) {
   header { padding: 0.8rem 4%; }
   .logo img { width: 12vw; max-width: 56px; }
   nav { gap: 1rem; max-width: 80vw; }
   nav a { font-size: 1rem; }
-
 }
 
 /* ====== الشريط السفلي ====== */
@@ -145,6 +219,7 @@ footer.bottom-bar {
   width: 100%;
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   color: #fff;
   text-align: center;
@@ -170,9 +245,9 @@ footer.bottom-bar {
   width: 28px;
   height: 28px;
   filter: brightness(90%);
-  transition: 0.3s;
+  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
 }
-
 .social-icons a img:hover {
   transform: scale(1.1);
   filter: brightness(120%);
@@ -180,8 +255,8 @@ footer.bottom-bar {
 
 .contact-info p {
   margin: 3px 0;
-  font-size: 0.9rem;
-  color: #050505;
+  font-size: 1.2rem;
+  color: #807d7d;
 }
 
 .feedback {
@@ -191,38 +266,37 @@ footer.bottom-bar {
 
 /* ====== للشاشات الصغيرة ====== */
 @media (max-width: 768px) {
-  .social-icons {
-    gap: 14px;
+  nav {
+    flex-wrap: nowrap;        /* 🔹يمنع العناصر من النزول للسطر التالي */
+    overflow-x: auto;         /* 🔹يتيح تمرير أفقي لو كانت كثيرة */
+    justify-content: flex-start; /* 🔹يبقيهم بمحاذاة البداية */
+    gap: 0.4rem;              /* 🔹تباعد أقل */
+    padding: 0.3rem 0.6rem;
   }
-  .social-icons a img {
-    width: 24px;
-    height: 24px;
-  }
-  .contact-info p {
-    font-size: 0.8rem;
+
+  nav a {
+    font-size: 0.8rem;        /* 🔹تصغير النص */
+    padding: 0.35rem 0.6rem;  /* 🔹تصغير البادينغ */
+    white-space: nowrap;      /* 🔹يمنع التفاف النص داخل الرابط */
   }
 }
- /* #725d00 */
 
 
- .asd {
+/* ====== إضافات جمالية ====== */
+.asd {
   position: fixed;
-
-  
-  
   background: rgba(255, 255, 255, 0.1);
-  
   border-radius: 8px;
   color: #fff;
   font-size: 1.15rem;
   z-index: 1000;
- }
+}
 
- .glass{
+.glass {
   background: linear-gradient(135deg, rgba(90, 89, 89, 0.01), rgba(255,255,255,0.3));
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255,255,255,0.2);
-
   padding: 0.3rem 1rem;
   border-radius: 8px;
   color: white;
@@ -231,18 +305,16 @@ footer.bottom-bar {
   text-align: left;
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-  .اشعار {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #8fd4f0;
-  }
+ul { list-style-type: none; padding: 0; }
 
-  .gradient-text {
-  background: linear-gradient(90deg, #6a6c6d, #c8c9ca); /* لونين ممزوجين */
+.اشعار {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #8fd4f0;
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, #6a6c6d, #c8c9ca);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: 600;
@@ -259,4 +331,5 @@ ul {
   padding: 10px 20px;
   border-radius: 12px;
   backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
