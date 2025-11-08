@@ -320,7 +320,8 @@ ul { list-style-type: none; padding: 0; }
 }
 
 .gradient-text {
-  background:#ffffff;
+  background:#f5f3f3;
+  color: #82ecff;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: 600;
@@ -355,3 +356,7 @@ ul { list-style-type: none; padding: 0; }
   text-decoration: none;
   transition: color 0.3s ease;
 }
+
+
+
+

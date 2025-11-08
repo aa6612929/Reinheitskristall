@@ -66,3 +66,5 @@ function hideSideMenu() {
   content.style.transform = `translateY(-50%) translateX(100%)`;
   line.style.opacity = 1;
 }
+
+
