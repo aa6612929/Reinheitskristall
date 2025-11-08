@@ -256,7 +256,13 @@ footer.bottom-bar {
 .contact-info p {
   margin: 3px 0;
   font-size: 1.2rem;
-  color: #807d7d;
+  color: #070707;
+}
+
+.contact-info {
+  color: #080808;
+  text-decoration: none;
+
 }
 
 .feedback {
@@ -314,7 +320,7 @@ ul { list-style-type: none; padding: 0; }
 }
 
 .gradient-text {
-  background: linear-gradient(90deg, #6a6c6d, #c8c9ca);
+  background:#ffffff;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: 600;
@@ -332,4 +338,20 @@ ul { list-style-type: none; padding: 0; }
   border-radius: 12px;
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
+}
+
+.imgess {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+}
+
+
+.bottom-bar a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
