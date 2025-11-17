@@ -361,9 +361,8 @@ ul { list-style-type: none; padding: 0; }
 
 .as {
   font-size: 0.77rem;
-  
-  padding: 0.3rem 1rem;
-  border-radius: 8px;
+  display: block; 
+  text-align: center;
   
 }
 
