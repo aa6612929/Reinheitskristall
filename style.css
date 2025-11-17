@@ -66,13 +66,7 @@ header {
   width: clamp(40px, 6vw, 60px);
   height: auto;
 }
-.glass-name {
-  background: rgba(255, 255, 255, 0.4);
-  padding: 0.3rem 1rem;
-  border-radius: 8px;
-  color: white;
-  font-size: 0.95rem;
-}
+
 
 /* =============== القائمة العلوية =============== */
 nav {
@@ -359,8 +353,20 @@ ul { list-style-type: none; padding: 0; }
 
 
 
+.glass-name {
+  display: block; /* لجعل النص يظهر كسطر كامل */
+  background: rgba(255, 255, 255, 0.4);
+  padding: 0.3rem 1rem;
+  border-radius: 8px;
+  color: white;
+  font-size: 0.95rem;
+  text-align: center; /* لتوسيط النص */
+}
+
 .as {
   font-size: 0.77rem;
-  display: block; /* يجعل كل span يبدأ سطر جديد */
-  text-align: center; /* لتوسيط النص تحت الصورة */
+  display: block; /* يجعل النص يظهر تحت glass-name */
+  text-align: center;
+}
+
 }
