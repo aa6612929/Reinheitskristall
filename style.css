@@ -361,10 +361,6 @@ ul { list-style-type: none; padding: 0; }
 
 .as {
   font-size: 0.77rem;
-}
-
-.glass-name,
-.as {
   display: block; /* يجعل كل span يبدأ سطر جديد */
   text-align: center; /* لتوسيط النص تحت الصورة */
 }
